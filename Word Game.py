@@ -33,7 +33,7 @@ def print_rules():
     print('This game has only a few rules:')
     print('    Hangman is a simple word guessing game. Players try to figure out an unknown word by guessing letters.')
     print('    If too many letters which do not appear in the word are guessed, the player is hanged (and loses).')
-    print('    You have 6 (six) one letter guesses.')
+    print('    You have 7 (seven) one letter guesses.')
     print('    However, you can choose the length of the word depending on the difficulty of your choosing.')
     input('Press "enter" when you are ready to play! ')
 
@@ -76,7 +76,7 @@ def play_game(level: int, wordfile: str):
     print(' '.join(current_word))
     guesses = 0
     wrong_guesses = []
-    max_wrong_guesses = 6
+    max_wrong_guesses = 7
 
     while True:
         guess = get_letter_input()
@@ -90,7 +90,7 @@ def play_game(level: int, wordfile: str):
         else:
             print('Wrong guess!')
             wrong_guesses.append(guess)
-            print_hangman(len(wrong_guesses))
+            print_hangman(len(wrong_guesses) - 1)
             print(f"Guesses: {', '.join(wrong_guesses)}")
             print(' '.join(current_word))
 
@@ -171,7 +171,7 @@ def print_hangman(incorrect_guesses):
         ________
                |          
                |           
-            (O, _ O)
+            (X _ X)
                |
              \ | / 
                |
