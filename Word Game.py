@@ -75,7 +75,7 @@ def play_game(level: int, wordfile: str):
     current_word = ['_'] * word_length
     print(' '.join(current_word))
     guesses = 0
-    wrong_guesses = 0
+    wrong_guesses = []
     max_wrong_guesses = 6
 
     while True:
@@ -89,8 +89,10 @@ def play_game(level: int, wordfile: str):
             print(' '.join(current_word))
         else:
             print('Wrong guess!')
-            wrong_guesses += 1
-            print_hangman(wrong_guesses)
+            wrong_guesses.append(guess)
+            print_hangman(len(wrong_guesses))
+            print(f"Guesses: {', '.join(wrong_guesses)}")
+            print(' '.join(current_word))
 
         guesses += 1
         if ''.join(current_word) == word:
@@ -98,9 +100,10 @@ def play_game(level: int, wordfile: str):
             print(f'You made {guesses} guesses.')
             return False
 
-        if wrong_guesses == max_wrong_guesses:
+        if len(wrong_guesses) == max_wrong_guesses:
             print(f'You lost. The word was: {word}')
             return False
+
 
 
 def print_hangman(incorrect_guesses):
@@ -128,7 +131,6 @@ def print_hangman(incorrect_guesses):
                |
                |
                |
-
         ''',
         # Stage 3 (one arm)
         '''
@@ -140,7 +142,6 @@ def print_hangman(incorrect_guesses):
              \ |
                |
                |
-
         ''',
         # Stage 4 (other arm)
         '''
